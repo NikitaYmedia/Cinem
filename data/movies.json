@@ -1,0 +1,37 @@
+[
+    {
+        "id": 1,
+        "title": "Dune: Part Two",
+        "genre": "Sci-Fi, Drama",
+        "rating": 8.5,
+        "image": "https://image.tmdb.org/t/p/w500/1pdfLvkbY9ohJlCjQH2CZjjYVvJ.jpg"
+    },
+    {
+        "id": 2,
+        "title": "Godzilla x Kong",
+        "genre": "Action, Adventure",
+        "rating": 7.1,
+        "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRjHnEuYcGKLxyBnZCtjY34uLOGxQV4gW96ohwhJJxlAA&s=10"
+    },
+    {
+        "id": 3,
+        "title": "Oppenheimer",
+        "genre": "Biography, Drama",
+        "rating": 8.3,
+        "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQw4Zeq_zJTfuRQBJCseEb452zNAkSnKyefmZZulw0egQ&s=10"
+    },
+    {
+        "id": 4,
+        "title": "Spider-Man: No Way Home",
+        "genre": "Action, Sci-Fi",
+        "rating": 8.2,
+        "image": "https://image.tmdb.org/t/p/w500/1g0dhYtq4irTY1GPXvft6k4YLjm.jpg"
+    },
+    {
+        "id": 5,
+        "title": "Inside Out",
+        "genre": "Animation, Comedy",
+        "rating": 7.9,
+        "image": "https://upload.wikimedia.org/wikipedia/en/0/0a/Inside_Out_%282015_film%29_poster.jpg"
+    }
+]
