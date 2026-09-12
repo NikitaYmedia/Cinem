@@ -1,0 +1,93 @@
+[
+    {
+        "id": 1,
+        "title": "Dune: Part Two",
+        "genre": "Sci-Fi, Drama",
+        "year": 2024,
+        "rating": 8.5,
+        "image": "https://image.tmdb.org/t/p/w500/1pdfLvkbY9ohJlCjQH2CZjjYVvJ.jpg"
+    },
+    {
+        "id": 2,
+        "title": "Oppenheimer",
+        "genre": "Biography, Drama",
+        "year": 2023,
+        "rating": 8.3,
+        "image": "https://image.tmdb.org/t/p/w500/8Gxv8gSFCU0XGDykEGv7zR1n2ua.jpg"
+    },
+    {
+        "id": 3,
+        "title": "Bad Boys 4",
+        "genre": "Action, Comedy",
+        "year": 2024,
+        "rating": 6.8,
+        "image": "https://image.tmdb.org/t/p/w500/nP6RliHjxsz4irTKsxe8FRhKZYl.jpg"
+    },
+    {
+        "id": 4,
+        "title": "Inside Out 2",
+        "genre": "Animation, Comedy",
+        "year": 2024,
+        "rating": 7.9,
+        "image": "https://image.tmdb.org/t/p/w500/vpnVM9B6NMmQpWeZvzLvDESb2QY.jpg"
+    },
+    {
+        "id": 5,
+        "title": "Kingdom of the Planet of the Apes",
+        "genre": "Adventure, Sci-Fi",
+        "year": 2024,
+        "rating": 7.3,
+        "image": "https://image.tmdb.org/t/p/w500/gKkl37BQuKTanygYQG1pyYgLVgf.jpg"
+    },
+    {
+        "id": 6,
+        "title": "Deadpool & Wolverine",
+        "genre": "Action, Comedy",
+        "year": 2024,
+        "rating": 8.1,
+        "image": "https://image.tmdb.org/t/p/w500/8cdWjvZQUExUUTzyp4t6EDMubfO.jpg"
+    },
+    {
+        "id": 7,
+        "title": "Interstellar",
+        "genre": "Sci-Fi, Drama",
+        "year": 2014,
+        "rating": 8.7,
+        "image": "https://image.tmdb.org/t/p/w500/gEU2QniE6E77NI6lCU6MxlNBvIx.jpg"
+    },
+    {
+        "id": 8,
+        "title": "Tenet",
+        "genre": "Action, Thriller",
+        "year": 2020,
+        "rating": 8.8,
+        "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTO7aSxhxvrrhXf639AefKAzAbpAVqeL8gq11E1oRi_dg&s=10"
+    },
+    {
+        "id": 9,
+        "title": "Barbie",
+        "genre": "Comedy, Adventure",
+        "year": 2023,
+        "rating": 6.9,
+        "image": "https://image.tmdb.org/t/p/w500/iuFNMS8U5cb6xfzi51Dbkovj7vM.jpg"
+    },
+    {
+        "id": 10,
+        "title": "Avatar: The Way of Water",
+        "genre": "Sci-Fi, Adventure",
+        "year": 2022,
+        "rating": 7.5,
+        "image": "https://image.tmdb.org/t/p/w500/t6HIqrRAclMCA60NsSmeqe9RmNV.jpg"
+    },
+    {
+        "id": 7,
+        "title": "Interstellar",
+        "genre": "Sci-Fi, Drama",
+        "year": 2014,
+        "rating": 8.7,
+        "duration": 169,
+        "age": "12+",
+        "description": "When Earth becomes uninhabitable, a group of explorers travels through a wormhole in search of a new home for humanity.",
+        "image": "https://image.tmdb.org/t/p/w500/gEU2QniE6E77NI6lCU6MxlNBvIx.jpg"
+    }
+]

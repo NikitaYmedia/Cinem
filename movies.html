@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movies - Cinestar</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <header class="header movies-header">
+        <a href="index.html" class="logo">CINESTAR</a>
+        <nav class="nav">
+            <a href="index.html" class="nav-link">Home</a>
+            <a href="movies.html" class="nav-link active">Movies</a>
+            <a href="booking.html" class="nav-link">Booking</a>
+        </nav>
+        <div class="header-actions">
+            <button class="search-btn" type="button" aria-label="Search"></button>
+            <a href="#" class="sign-btn">Sign In</a>
+        </div>
+    </header>
+
+    <main class="movies-page">
+        <section class="movies-intro">
+            <div class="movies-intro-content">
+                <h1>Movies</h1>
+                <p>Find your perfect movie</p>
+            </div>
+        </section>
+
+        <section class="movies-section">
+            <div class="movies-filters">
+                <div class="search-box">
+                    <input id="movie-search" type="text" placeholder="Search for a movie...">
+                    <button class="filter-search-btn" type="button" aria-label="Search"></button>
+                </div>
+
+                <select id="genre-filter">
+                    <option value="all">Genre: All</option>
+                </select>
+
+                <select id="year-filter">
+                    <option value="all">Year: All</option>
+                </select>
+
+                <select id="sort-filter">
+                    <option value="default">Sort by</option>
+                    <option value="rating-desc">Rating: High to Low</option>
+                    <option value="rating-asc">Rating: Low to High</option>
+                    <option value="title-asc">Title: A-Z</option>
+                    <option value="title-desc">Title: Z-A</option>
+                </select>
+            </div>
+
+            <div class="movies-grid" id="movies-grid"></div>
+            <div class="pagination" id="pagination"></div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-top">
+            <div class="footer-brand">
+                <a href="index.html" class="footer-logo">CINESTAR</a>
+                <p>Movies bring people together.</p>
+            </div>
+            <nav class="footer-nav">
+                <a href="index.html">Home</a>
+                <a href="movies.html">Movies</a>
+                <a href="booking.html">Booking</a>
+                <a href="#">About</a>
+                <a href="#">Contact</a>
+            </nav>
+
+            <div class="footer-socials">
+                <a href="#" aria-label="X">
+                    <img src="/img/icon/twitter-x-logo-png_seeklogo-492396.png" alt="X">
+                </a>
+                <a href="#" aria-label="Facebook">
+                    <img src="/img/icon/Facebook_f_logo_(2019).svg.webp" alt="Facebook">
+                </a>
+                <a href="#" aria-label="YouTube">
+                    <img src="/img/icon/Youtube_logo.png" alt="YouTube">
+                </a>
+                <a href="#" aria-label="Instagram">
+                    <img src="/img/icon/Instagram_icon.png" alt="Instagram">
+                </a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2024 CineStar. All rights reserved.</p>
+            <div class="footer-links">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/cards.js"></script>
+    <script src="js/movies.js"></script>
+    <script src="js/filter.js"></script>
+    <script src="js/search.js"></script>
+</body>
+
+</html>

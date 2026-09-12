@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booking - Cinestar</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <header class="header booking-header">
+        <a href="index.html" class="logo">CINESTAR</a>
+        <nav class="nav">
+            <a href="index.html" class="nav-link">Home</a>
+            <a href="movies.html" class="nav-link">Movies</a>
+            <a href="booking.html" class="nav-link active">Booking</a>
+        </nav>
+        <div class="header-actions">
+            <button class="search-btn" type="button" aria-label="Search"></button>
+            <a href="#" class="sign-btn">Sign In</a>
+        </div>
+    </header>
+
+    <main class="booking-page">
+        <a href="movies.html" class="back-link">← Back to movies</a>
+
+        <div class="booking-layout">
+            <section class="booking-movie">
+                <img id="booking-movie-image" src="" alt="">
+                <div class="booking-movie-info">
+                    <h1 id="booking-movie-title">Interstellar</h1>
+                    <p id="booking-movie-genre">Sci-Fi, Drama</p>
+                    <div class="booking-rating">
+                        <span class="star">★</span>
+                        <span id="booking-movie-rating">8.7</span>
+                    </div>
+                    <div class="booking-meta">
+                        <span id="booking-movie-duration">169 min</span>
+                        <span id="booking-movie-age">12+</span>
+                    </div>
+                    <p id="booking-movie-description">
+                        When Earth becomes uninhabitable, a group of explorers travels through a wormhole in search of a
+                        new home for humanity.
+                    </p>
+                </div>
+            </section>
+
+            <section class="booking-panel">
+                <div class="booking-steps">
+                    <div class="booking-step active">
+                        <span>1</span>
+                        <p>Select Date</p>
+                    </div>
+                    <div class="booking-step">
+                        <span>2</span>
+                        <p>Choose Seats</p>
+                    </div>
+                    <div class="booking-step">
+                        <span>3</span>
+                        <p>Payment</p>
+                    </div>
+                </div>
+
+                <div class="booking-content">
+                    <div class="booking-title">Select Date</div>
+                    <div class="date-list" id="date-list"></div>
+
+                    <div class="time-list" id="time-list"></div>
+
+                    <div class="seat-layout">
+                        <div class="screen">SCREEN</div>
+                        <div class="seats" id="seats"></div>
+                        <div class="seat-legend">
+                            <div><span class="seat-example available"></span>Available</div>
+                            <div><span class="seat-example selected"></span>Selected</div>
+                            <div><span class="seat-example booked"></span>Booked</div>
+                        </div>
+                    </div>
+                </div>
+
+                <aside class="selection-panel">
+                    <h2>Your Selection</h2>
+                    <div class="selection-item">
+                        <span class="selection-icon movie-icon"></span>
+                        <span id="selected-movie">Interstellar</span>
+                    </div>
+                    <div class="selection-item">
+                        <span class="selection-icon calendar-icon"></span>
+                        <span id="selected-date">May 12, 13:30</span>
+                    </div>
+                    <div class="selection-item">
+                        <span class="selection-icon seat-icon"></span>
+                        <span id="selected-seats">2 seats (D5, D6)</span>
+                    </div>
+                    <div class="selection-total">
+                        <span>Total:</span>
+                        <strong id="total-price">$24.00</strong>
+                    </div>
+                    <button class="payment-btn" id="payment-btn" type="button">Proceed to Payment</button>
+                </aside>
+            </section>
+        </div>
+    </main>
+
+    <script src="js/booking.js"></script>
+</body>
+
+</html>
