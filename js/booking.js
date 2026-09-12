@@ -5,21 +5,30 @@ const movieRating = document.querySelector("#booking-movie-rating");
 const movieDuration = document.querySelector("#booking-movie-duration");
 const movieAge = document.querySelector("#booking-movie-age");
 const movieDescription = document.querySelector("#booking-movie-description");
-
 const dateList = document.querySelector("#date-list");
 const timeList = document.querySelector("#time-list");
 const seatsContainer = document.querySelector("#seats");
-
+const seatCount = document.querySelector("#seat-count");
 const selectedMovie = document.querySelector("#selected-movie");
 const selectedDate = document.querySelector("#selected-date");
 const selectedSeats = document.querySelector("#selected-seats");
 const totalPrice = document.querySelector("#total-price");
 const paymentButton = document.querySelector("#payment-btn");
+const paymentModal = document.querySelector("#payment-modal");
+const paymentClose = document.querySelector("#payment-close");
+const paymentForm = document.querySelector("#payment-form");
+const paymentSuccess = document.querySelector("#payment-success");
+const paymentMovie = document.querySelector("#payment-movie");
+const paymentSeats = document.querySelector("#payment-seats");
+const paymentTotal = document.querySelector("#payment-total");
+const paymentButtonPrice = document.querySelector("#payment-button-price");
+const bookingConfirmation = document.querySelector("#booking-confirmation");
 
 const ticketPrice = 12;
 let selectedDateValue = "May 12";
 let selectedTime = "13:30";
 let selectedSeatNumbers = [];
+let currentMovie = null;
 
 async function loadBookingMovie() {
     try {
@@ -33,22 +42,21 @@ async function loadBookingMovie() {
         }
 
         const movies = await response.json();
-        const movie = movies.find(item => item.id === movieId);
+        currentMovie = movies.find(movie => movie.id === movieId);
 
-        if (!movie) {
+        if (!currentMovie) {
             throw new Error("Movie not found");
         }
 
-        movieImage.src = movie.image;
-        movieImage.alt = movie.title;
-        movieTitle.textContent = movie.title;
-        movieGenre.textContent = movie.genre;
-        movieRating.textContent = movie.rating;
-        movieDuration.textContent = `${movie.duration || 169} min`;
-        movieAge.textContent = movie.age || "12+";
-        movieDescription.textContent = movie.description || "Enjoy an unforgettable cinema experience with the latest movies.";
-
-        selectedMovie.textContent = movie.title;
+        movieImage.src = currentMovie.image;
+        movieImage.alt = currentMovie.title;
+        movieTitle.textContent = currentMovie.title;
+        movieGenre.textContent = currentMovie.genre;
+        movieRating.textContent = currentMovie.rating;
+        movieDuration.textContent = `${currentMovie.duration || 169} min`;
+        movieAge.textContent = currentMovie.age || "12+";
+        movieDescription.textContent = currentMovie.description || "Enjoy an unforgettable cinema experience with the latest movies.";
+        selectedMovie.textContent = currentMovie.title;
 
         renderDates();
         renderTimes();
@@ -77,10 +85,7 @@ function renderDates() {
 
     dateList.querySelectorAll(".date-btn").forEach(button => {
         button.addEventListener("click", () => {
-            dateList.querySelectorAll(".date-btn").forEach(item => {
-                item.classList.remove("active");
-            });
-
+            dateList.querySelectorAll(".date-btn").forEach(item => item.classList.remove("active"));
             button.classList.add("active");
             selectedDateValue = button.dataset.date;
             updateSelection();
@@ -99,10 +104,7 @@ function renderTimes() {
 
     timeList.querySelectorAll(".time-btn").forEach(button => {
         button.addEventListener("click", () => {
-            timeList.querySelectorAll(".time-btn").forEach(item => {
-                item.classList.remove("active");
-            });
-
+            timeList.querySelectorAll(".time-btn").forEach(item => item.classList.remove("active"));
             button.classList.add("active");
             selectedTime = button.dataset.time;
             updateSelection();
@@ -119,21 +121,13 @@ function renderSeats() {
             <span class="row-label">${row}</span>
             <div class="row-seats">
                 ${Array.from({ length: 10 }, (_, index) => {
-                    const seatNumber = index + 1;
-                    const seatId = `${row}${seatNumber}`;
-                    const isBooked = bookedSeats.includes(seatId);
+        const seatId = `${row}${index + 1}`;
+        const isBooked = bookedSeats.includes(seatId);
 
-                    return `
-                        <button
-                            class="seat ${isBooked ? "booked" : ""}"
-                            type="button"
-                            data-seat="${seatId}"
-                            ${isBooked ? "disabled" : ""}
-                        >
-                            ${seatNumber}
-                        </button>
+        return `
+                        <button class="seat ${isBooked ? "booked" : ""}" type="button" data-seat="${seatId}" ${isBooked ? "disabled" : ""}></button>
                     `;
-                }).join("")}
+    }).join("")}
             </div>
         </div>
     `).join("");
@@ -142,12 +136,12 @@ function renderSeats() {
         seat.addEventListener("click", () => {
             const seatId = seat.dataset.seat;
 
-            seat.classList.toggle("selected");
-
             if (selectedSeatNumbers.includes(seatId)) {
                 selectedSeatNumbers = selectedSeatNumbers.filter(id => id !== seatId);
+                seat.classList.remove("selected");
             } else {
                 selectedSeatNumbers.push(seatId);
+                seat.classList.add("selected");
             }
 
             updateSelection();
@@ -156,26 +150,168 @@ function renderSeats() {
 }
 
 function updateSelection() {
-    selectedDate.textContent = `${selectedDateValue}, ${selectedTime}`;
+    const sortedSeats = [...selectedSeatNumbers].sort();
 
-    if (selectedSeatNumbers.length) {
-        const sortedSeats = [...selectedSeatNumbers].sort();
-        selectedSeats.textContent = `${sortedSeats.length} seats (${sortedSeats.join(", ")})`;
-    } else {
-        selectedSeats.textContent = "0 seats";
-    }
+    seatCount.textContent = `${sortedSeats.length} selected`;
+    selectedDate.textContent = `${selectedDateValue}, ${selectedTime}`;
+    selectedSeats.textContent = sortedSeats.length ? `${sortedSeats.length} seats (${sortedSeats.join(", ")})` : "0 seats";
 
     const total = selectedSeatNumbers.length * ticketPrice;
     totalPrice.textContent = `$${total.toFixed(2)}`;
+    paymentButton.disabled = selectedSeatNumbers.length === 0;
+
+    updateBookingStep();
 }
 
-paymentButton.addEventListener("click", () => {
+function updateBookingStep() {
+    const steps = document.querySelectorAll(".booking-step");
+
+    steps.forEach(step => step.classList.remove("active", "completed"));
+
+    steps[0].classList.add("completed");
+
+    if (selectedSeatNumbers.length > 0) {
+        steps[1].classList.add("active");
+    } else {
+        steps[0].classList.add("active");
+    }
+}
+
+function openPayment() {
     if (!selectedSeatNumbers.length) {
-        alert("Please select at least one seat.");
         return;
     }
 
-    alert(`Booking confirmed for ${selectedSeatNumbers.length} seat(s).`);
+    const sortedSeats = [...selectedSeatNumbers].sort();
+    const total = selectedSeatNumbers.length * ticketPrice;
+
+    paymentMovie.textContent = currentMovie.title;
+    paymentSeats.textContent = sortedSeats.join(", ");
+    paymentTotal.textContent = `$${total.toFixed(2)}`;
+    paymentButtonPrice.textContent = `$${total.toFixed(2)}`;
+
+    paymentModal.classList.add("show");
+    paymentSuccess.classList.remove("show");
+    paymentForm.classList.remove("hidden");
+
+    document.querySelectorAll(".booking-step").forEach(step => step.classList.remove("active"));
+    document.querySelector('[data-step="3"]').classList.add("active");
+}
+
+function closePayment() {
+    paymentModal.classList.remove("show");
+}
+
+paymentButton.addEventListener("click", openPayment);
+
+paymentClose.addEventListener("click", closePayment);
+
+document.querySelector(".payment-overlay").addEventListener("click", closePayment);
+
+const cardNameInput = document.querySelector("#card-name");
+const cardNumberInput = document.querySelector("#card-number");
+const cardExpiryInput = document.querySelector("#card-expiry");
+const cardCvvInput = document.querySelector("#card-cvv");
+
+const cardNameError = document.querySelector("#card-name-error");
+const cardNumberError = document.querySelector("#card-number-error");
+const cardExpiryError = document.querySelector("#card-expiry-error");
+const cardCvvError = document.querySelector("#card-cvv-error");
+
+cardNumberInput.addEventListener("input", () => {
+    cardNumberInput.value = cardNumberInput.value.replace(/\D/g, "").slice(0, 16);
+    cardNumberError.textContent = "";
+    cardNumberInput.classList.remove("error");
+});
+
+cardCvvInput.addEventListener("input", () => {
+    cardCvvInput.value = cardCvvInput.value.replace(/\D/g, "").slice(0, 3);
+    cardCvvError.textContent = "";
+    cardCvvInput.classList.remove("error");
+});
+
+cardExpiryInput.addEventListener("input", () => {
+    let value = cardExpiryInput.value.replace(/\D/g, "").slice(0, 4);
+
+    if (value.length > 2) {
+        value = `${value.slice(0, 2)}/${value.slice(2)}`;
+    }
+
+    cardExpiryInput.value = value;
+    cardExpiryError.textContent = "";
+    cardExpiryInput.classList.remove("error");
+});
+
+cardNameInput.addEventListener("input", () => {
+    cardNameError.textContent = "";
+    cardNameInput.classList.remove("error");
+});
+
+paymentForm.addEventListener("submit", event => {
+    event.preventDefault();
+
+    let isValid = true;
+
+    const name = cardNameInput.value.trim();
+    const cardNumber = cardNumberInput.value.trim();
+    const expiry = cardExpiryInput.value.trim();
+    const cvv = cardCvvInput.value.trim();
+
+    cardNameError.textContent = "";
+    cardNumberError.textContent = "";
+    cardExpiryError.textContent = "";
+    cardCvvError.textContent = "";
+
+    cardNameInput.classList.remove("error");
+    cardNumberInput.classList.remove("error");
+    cardExpiryInput.classList.remove("error");
+    cardCvvInput.classList.remove("error");
+
+    if (!name) {
+        cardNameError.textContent = "Please enter your name";
+        cardNameInput.classList.add("error");
+        isValid = false;
+    }
+
+    if (!cardNumber) {
+        cardNumberError.textContent = "Please enter your card number";
+        cardNumberInput.classList.add("error");
+        isValid = false;
+    } else if (cardNumber.length !== 16) {
+        cardNumberError.textContent = "Card number must contain 16 digits";
+        cardNumberInput.classList.add("error");
+        isValid = false;
+    }
+
+    if (!expiry) {
+        cardExpiryError.textContent = "Please enter expiry date";
+        cardExpiryInput.classList.add("error");
+        isValid = false;
+    } else if (!/^(0[1-9]|1[0-2])\/\d{2}$/.test(expiry)) {
+        cardExpiryError.textContent = "Use MM/YY format";
+        cardExpiryInput.classList.add("error");
+        isValid = false;
+    }
+
+    if (!cvv) {
+        cardCvvError.textContent = "Please enter CVV";
+        cardCvvInput.classList.add("error");
+        isValid = false;
+    } else if (cvv.length !== 3) {
+        cardCvvError.textContent = "CVV must contain 3 digits";
+        cardCvvInput.classList.add("error");
+        isValid = false;
+    }
+
+    if (!isValid) {
+        return;
+    }
+
+    paymentForm.classList.add("hidden");
+    paymentSuccess.classList.add("show");
+
+    bookingConfirmation.textContent =
+        `${currentMovie.title} · ${selectedDateValue} · ${selectedTime} · ${selectedSeatNumbers.join(", ")}`;
 });
 
 loadBookingMovie();

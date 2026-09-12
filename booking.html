@@ -39,24 +39,22 @@
                         <span id="booking-movie-duration">169 min</span>
                         <span id="booking-movie-age">12+</span>
                     </div>
-                    <p id="booking-movie-description">
-                        When Earth becomes uninhabitable, a group of explorers travels through a wormhole in search of a
-                        new home for humanity.
-                    </p>
+                    <p id="booking-movie-description">When Earth becomes uninhabitable, a group of explorers travels
+                        through a wormhole in search of a new home for humanity.</p>
                 </div>
             </section>
 
             <section class="booking-panel">
                 <div class="booking-steps">
-                    <div class="booking-step active">
+                    <div class="booking-step active" data-step="1">
                         <span>1</span>
                         <p>Select Date</p>
                     </div>
-                    <div class="booking-step">
+                    <div class="booking-step" data-step="2">
                         <span>2</span>
                         <p>Choose Seats</p>
                     </div>
-                    <div class="booking-step">
+                    <div class="booking-step" data-step="3">
                         <span>3</span>
                         <p>Payment</p>
                     </div>
@@ -66,7 +64,13 @@
                     <div class="booking-title">Select Date</div>
                     <div class="date-list" id="date-list"></div>
 
+                    <div class="booking-title time-title">Select Time</div>
                     <div class="time-list" id="time-list"></div>
+
+                    <div class="booking-seat-title">
+                        <span>Choose Seats</span>
+                        <span id="seat-count">0 selected</span>
+                    </div>
 
                     <div class="seat-layout">
                         <div class="screen">SCREEN</div>
@@ -81,27 +85,107 @@
 
                 <aside class="selection-panel">
                     <h2>Your Selection</h2>
+
                     <div class="selection-item">
                         <span class="selection-icon movie-icon"></span>
                         <span id="selected-movie">Interstellar</span>
                     </div>
+
                     <div class="selection-item">
                         <span class="selection-icon calendar-icon"></span>
                         <span id="selected-date">May 12, 13:30</span>
                     </div>
+
                     <div class="selection-item">
                         <span class="selection-icon seat-icon"></span>
-                        <span id="selected-seats">2 seats (D5, D6)</span>
+                        <span id="selected-seats">0 seats</span>
                     </div>
+
                     <div class="selection-total">
                         <span>Total:</span>
-                        <strong id="total-price">$24.00</strong>
+                        <strong id="total-price">$0.00</strong>
                     </div>
-                    <button class="payment-btn" id="payment-btn" type="button">Proceed to Payment</button>
+
+                    <button class="payment-btn" id="payment-btn" type="button" disabled>
+                        Proceed to Payment
+                    </button>
                 </aside>
             </section>
         </div>
     </main>
+
+    <div class="payment-modal" id="payment-modal">
+        <div class="payment-overlay"></div>
+
+        <div class="payment-window">
+            <button class="payment-close" id="payment-close" type="button" aria-label="Close">×</button>
+
+            <div class="payment-header">
+                <span class="payment-step-number">3</span>
+                <div>
+                    <h2>Payment</h2>
+                    <p>Complete your booking</p>
+                </div>
+            </div>
+
+            <div class="payment-summary">
+                <div>
+                    <span>Movie</span>
+                    <strong id="payment-movie">Interstellar</strong>
+                </div>
+                <div>
+                    <span>Seats</span>
+                    <strong id="payment-seats">D5, D6</strong>
+                </div>
+                <div>
+                    <span>Total</span>
+                    <strong id="payment-total">$24.00</strong>
+                </div>
+            </div>
+
+            <form id="payment-form" class="payment-form">
+                <label>
+                    Cardholder Name
+                    <input id="card-name" type="text" placeholder="Enter your name" maxlength="40" required>
+                    <span class="input-error" id="card-name-error"></span>
+                </label>
+
+                <label>
+                    Card Number
+                    <input id="card-number" type="text" placeholder="Enter card number" maxlength="16"
+                        inputmode="numeric" required>
+                    <span class="input-error" id="card-number-error"></span>
+                </label>
+
+                <div class="payment-row">
+                    <label>
+                        Expiry Date
+                        <input id="card-expiry" type="text" placeholder="MM/YY" maxlength="5" inputmode="numeric"
+                            required>
+                        <span class="input-error" id="card-expiry-error"></span>
+                    </label>
+
+                    <label>
+                        CVV
+                        <input id="card-cvv" type="text" placeholder="CVV" maxlength="3" inputmode="numeric" required>
+                        <span class="input-error" id="card-cvv-error"></span>
+                    </label>
+                </div>
+
+                <button class="confirm-payment-btn" type="submit">
+                    Pay <span id="payment-button-price">$24.00</span>
+                </button>
+            </form>
+
+            <div class="payment-success" id="payment-success">
+                <div class="success-icon">✓</div>
+                <h2>Payment Successful!</h2>
+                <p>Your booking has been confirmed.</p>
+                <span id="booking-confirmation"></span>
+                <a href="index.html" class="success-button">Back to Home</a>
+            </div>
+        </div>
+    </div>
 
     <script src="js/booking.js"></script>
 </body>

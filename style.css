@@ -841,7 +841,7 @@ button {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin-bottom: 22px;
+    margin-bottom: 30px;
 }
 
 .booking-step {
@@ -858,11 +858,11 @@ button {
     height: 24px;
     border: 1px solid rgba(255, 255, 255, 0.35);
     border-radius: 50%;
-    font-size: 10px;
+    font-size: 12px;
 }
 
 .booking-step p {
-    font-size: 10px;
+    font-size: 13px;
 }
 
 .booking-step.active span {
@@ -870,9 +870,14 @@ button {
     background: #ff3145;
 }
 
+.time-title {
+    margin-top: 22px;
+    margin-bottom: 10px;
+}
+
 .booking-title {
-    margin-bottom: 9px;
-    font-size: 11px;
+    margin-bottom: 10px;
+    font-size: 15px;
 }
 
 .date-list {
@@ -882,7 +887,7 @@ button {
 }
 
 .date-btn {
-    height: 50px;
+    height: 40px;
     padding: 6px;
     border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 5px;
@@ -892,14 +897,14 @@ button {
 
 .date-btn span {
     display: block;
-    font-size: 9px;
+    font-size: 12px;
     color: rgba(255, 255, 255, 0.7);
 }
 
 .date-btn strong {
     display: block;
     margin-top: 4px;
-    font-size: 10px;
+    font-size: 12px;
 }
 
 .date-btn.active {
@@ -909,7 +914,7 @@ button {
 
 .time-list {
     display: flex;
-    gap: 8px;
+    gap: 10px;
     margin-top: 10px;
 }
 
@@ -938,7 +943,7 @@ button {
     margin: 0 auto 22px;
     padding-top: 5px;
     text-align: center;
-    font-size: 8px;
+    font-size: 15px;
     color: rgba(255, 255, 255, 0.38);
 }
 
@@ -997,7 +1002,7 @@ button {
     justify-content: center;
     gap: 18px;
     margin-top: 18px;
-    font-size: 8px;
+    font-size: 10px;
     color: rgba(255, 255, 255, 0.55);
 }
 
@@ -1082,6 +1087,265 @@ button {
 
 .payment-btn:hover {
     background: #e92338;
+}
+
+.booking-seat-title {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    font-size: 11px;
+}
+
+#seat-count {
+    color: rgba(255, 255, 255, 0.45);
+    font-size: 9px;
+}
+
+.payment-btn:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+}
+
+.payment-btn:not(:disabled):hover {
+    background: #e92338;
+}
+
+.booking-step.completed span {
+    border-color: #ff3145;
+    background: #ff3145;
+}
+
+.payment-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    display: none;
+}
+
+.payment-modal.show {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.payment-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.72);
+}
+
+.payment-window {
+    position: relative;
+    z-index: 2;
+    width: min(430px, calc(100% - 30px));
+    padding: 25px;
+    border-radius: 8px;
+    background: #101d27;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.45);
+}
+
+.payment-close {
+    position: absolute;
+    top: 12px;
+    right: 14px;
+    width: 28px;
+    height: 28px;
+    border: 0;
+    background: transparent;
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 22px;
+    cursor: pointer;
+}
+
+.payment-close:hover {
+    color: #fff;
+}
+
+.payment-header {
+    display: flex;
+    align-items: center;
+    gap: 11px;
+    margin-bottom: 20px;
+}
+
+.payment-step-number {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: #ff3145;
+    font-size: 11px;
+}
+
+.payment-header h2 {
+    font-size: 18px;
+}
+
+.payment-header p {
+    margin-top: 3px;
+    font-size: 9px;
+    color: rgba(255, 255, 255, 0.45);
+}
+
+.payment-summary {
+    display: grid;
+    grid-template-columns: 1fr 1fr 90px;
+    gap: 10px;
+    margin-bottom: 20px;
+    padding: 12px;
+    border-radius: 5px;
+    background: #162631;
+}
+
+.payment-summary div {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.payment-summary span {
+    font-size: 8px;
+    color: rgba(255, 255, 255, 0.45);
+}
+
+.payment-summary strong {
+    font-size: 10px;
+}
+
+.payment-form {
+    display: flex;
+    flex-direction: column;
+    gap: 13px;
+}
+
+.payment-form label {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    font-size: 9px;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.payment-form input {
+    width: 100%;
+    height: 36px;
+    padding: 0 10px;
+    border: 1px solid rgba(255, 255, 255, 0.09);
+    border-radius: 4px;
+    outline: none;
+    background: #182833;
+    color: #fff;
+    font-size: 10px;
+}
+
+.payment-form input:focus {
+    border-color: #ff3145;
+}
+
+.payment-form input::placeholder {
+    color: rgba(255, 255, 255, 0.3);
+}
+
+.payment-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+}
+
+.confirm-payment-btn {
+    width: 100%;
+    height: 40px;
+    margin-top: 5px;
+    border: 0;
+    border-radius: 4px;
+    background: #ff3145;
+    color: #fff;
+    font-size: 10px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.confirm-payment-btn:hover {
+    background: #e92338;
+}
+
+.payment-form.hidden {
+    display: none;
+}
+
+.payment-success {
+    display: none;
+    padding: 15px 0 5px;
+    text-align: center;
+}
+
+.payment-success.show {
+    display: block;
+}
+
+.success-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 52px;
+    height: 52px;
+    margin: 0 auto 14px;
+    border-radius: 50%;
+    background: #ff3145;
+    font-size: 25px;
+    font-weight: 700;
+}
+
+.payment-success h2 {
+    font-size: 20px;
+}
+
+.payment-success p {
+    margin-top: 6px;
+    font-size: 10px;
+    color: rgba(255, 255, 255, 0.55);
+}
+
+#booking-confirmation {
+    display: block;
+    margin-top: 14px;
+    padding: 9px;
+    border-radius: 4px;
+    background: #162631;
+    font-size: 8px;
+    line-height: 1.5;
+    color: rgba(255, 255, 255, 0.65);
+}
+
+.success-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 36px;
+    margin-top: 15px;
+    border-radius: 4px;
+    background: #ff3145;
+    font-size: 9px;
+    font-weight: 600;
+}
+
+.success-button:hover {
+    background: #e92338;
+}
+
+@media (max-width: 600px) {
+    .payment-summary {
+        grid-template-columns: 1fr;
+    }
+
+    .payment-window {
+        padding: 20px;
+    }
 }
 
 @media (max-width: 900px) {
